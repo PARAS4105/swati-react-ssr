@@ -1,7 +1,7 @@
 import express from "express";
 import React from "react";
 import { renderToString } from "react-dom/server";
-import App from "../src/App.js";
+import App from "../src/App.jsx";
 import fs from "fs";
 import path from "path";
 
@@ -10,10 +10,16 @@ const PORT = 3000;
 
 app.use(express.static("public"));
 
-app.get("*", (req, res) => {
+app.get("/", (req, res) => {
   const appHtml = renderToString(<App />);
-  const htmlTemplate = fs.readFileSync(path.resolve("public/index.html"), "utf8");
-  const finalHtml = htmlTemplate.replace('<div id="root"></div>', `<div id="root">${appHtml}</div>`);
+  const htmlTemplate = fs.readFileSync(
+    path.resolve("public/index.html"),
+    "utf8"
+  );
+  const finalHtml = htmlTemplate.replace(
+    '<div id="root"></div>',
+    `<div id="root">${appHtml}</div>`
+  );
   res.send(finalHtml);
 });
 

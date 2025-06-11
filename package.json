@@ -14,10 +14,10 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-  "build": "webpack --config webpack.config.js",
-  "start": "node dist/server.js",
-  "dev": "nodemon --watch server --exec \"npm run build && node dist/server.js\""
-},
+    "build": "webpack --config webpack.config.js",
+    "start": "node dist/server.js",
+    "dev": "nodemon --watch server --exec \"npm run build && node dist/server.js\""
+  },
   "eslintConfig": {
     "extends": [
       "react-app",
