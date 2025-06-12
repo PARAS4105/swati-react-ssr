@@ -1,7 +1,7 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom'; 
 import { useEffect , useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation } from "react-router";
 import  './Header.css';
 
 export default  function Header({ adminDetail, propertylist, completedPropertylist, pageList, socialList }) {
@@ -90,7 +90,7 @@ async function getCategory() {
                     megaMenuClick(categoryData.category);
                     e.stopPropagation();
                   }}>
-                  <a href="#" className={megaMenuCategory === categoryData.category ? 'active' : ''}>
+                  <a href="javascript:void(0)" className={megaMenuCategory === categoryData.category ? 'active' : ''}>
                     <p className={`capitalize ${megaMenuCategory === categoryData.category ? 'secondary-color' : ''}`}>
                       {categoryData.category === 'Commercial'? 'Offices & Retail': categoryData.category}
                     </p>
@@ -125,7 +125,7 @@ async function getCategory() {
                     <div className="relative">
                         {data.banner_data.image_web_type == 'image' && <div className="project-img-list overflow relative">
                             <img loading="lazy"
-                                src={`{data.banner_data.image_web_full}&w=430&h=340`}
+                                src={`${data.banner_data.image_web_full}&w=430&h=340`}
                                 alt={data.project_title}  style={{aspectRatio: "32/25"}} />
                         </div>}
 
@@ -206,7 +206,7 @@ async function getCategory() {
                         <img src="https://ik.imagekit.io/ol8mhbfe8/swati-procon/icon/up-arrow.svg" alt="" className="manu-accordian-uparrow" />
                     </div>
                 </div>
-                <div className={`content_accordian ${activeIndex === index ? "content_accordianActive" : ''}`}>
+                <div className={`content_accordian_header ${activeIndex === index ? "content_accordianActive" : ''}`}>
                     <div>
                         <div className="inner-flex projectList_li inner-flex-zero">
                             {propertylist != null &&  propertylist.length > 0 && propertylist.map((data , index2) => {
@@ -220,7 +220,7 @@ async function getCategory() {
 
                                           <div className="w100 relative">
                                               <img loading="lazy"
-                                                  src={`{data.banner_data.image_web_full}&w=430&h=340`}
+                                                  src={`${data.banner_data.image_web_full}&w=430&h=340`}
                                                   alt="reecosys" />
 
                                           </div>
@@ -263,7 +263,7 @@ async function getCategory() {
                                     <div className="inner-flex inner-flex-smallest">
                                         <div className="w100 relative">
                                             <img loading="lazy"
-                                                  src={`{data.banner_data.image_web_full}&w=430&h=340`}
+                                                  src={`${data.banner_data.image_web_full}&w=430&h=340`}
                                                 //   style={{aspectRatio  : "241/188" }}
                                                 alt="reecosys" />
                                         </div>

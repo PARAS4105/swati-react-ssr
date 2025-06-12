@@ -1,4 +1,4 @@
-.content_accordian_header {
+.content_accordian_footer {
   max-height: 0;
   overflow: hidden;
   transition: max-height 0.4s ease, padding 0.4s ease;
