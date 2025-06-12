@@ -1,7 +1,8 @@
 import React from "react";
 
 const Home = ({ data }) => {
-  console.log("🏠 Home received data:", data);
+  // console.log("🏠 Home received data:", data);
+
   return (
     <div>
       <h2>Welcome to the Home Page</h2>

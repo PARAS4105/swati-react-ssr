@@ -22,7 +22,7 @@
   "scripts": {
     "build": "webpack --config webpack.config.js",
     "start": "node dist/server.js",
-    "dev": "nodemon --stats-error-details  --watch . --ext js,mjs,cjs,json,css server --exec \"npm run build && node dist/server.js\""
+    "dev": "nodemon  --watch . --ext js,mjs,cjs,json,css,jsx server --exec \"npm run build && node dist/server.js\""
   },
   "eslintConfig": {
     "extends": [
@@ -52,7 +52,9 @@
     "@babel/preset-env": "^7.27.2",
     "@babel/preset-react": "^7.27.1",
     "babel-loader": "^10.0.0",
+    "css-loader": "^7.1.2",
     "nodemon": "^3.1.10",
+    "style-loader": "^4.0.0",
     "webpack": "^5.99.9",
     "webpack-cli": "^6.0.1",
     "webpack-node-externals": "^3.0.0"

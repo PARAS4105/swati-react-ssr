@@ -1,4 +1,7 @@
 export const PropertyList = async () => {
+
+  console.log("✅ In PropertyList function");
+
   try {
     const response = await fetch("https://www.reecosys.com/api/Services/properties/list", {
       method: "POST",
@@ -13,13 +16,18 @@ export const PropertyList = async () => {
       })
     });
 
-    // ✅ parse and return JSON data
-    const data = await response.json();
-    console.log("✅ API response in PropertyList.js:", data); // ADD THIS
-    return data;
+    const data = await response.json(); // ✅ Parse JSON
+    if(data.success == 1){
+      return data.data; 
+    }
 
   } catch (error) {
-    console.error("API call failed:", error);
-    return null;
+    console.error("❌ API call failed:", error);
+    return {};
   }
 };
+
+
+
+
+

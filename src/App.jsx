@@ -1,33 +1,19 @@
-// App.jsx
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Routes, Route } from "react-router-dom";
+import "./styles/globals.css"
 import Home from "./pages/Home";
-import "./styles/App.css";
+import Header from "./components/Header";
 
-const App = (props) => {
-  const [data, setData] = useState(() => {
-    // Use server-passed props if available (SSR)
-    if (props.data) return props.data;
-    // Use window data on client if available (hydration)
-    if (typeof window !== "undefined" && window.__INITIAL_DATA__) {
-      return window.__INITIAL_DATA__;
-    }
-    return null; // default
-  });
-
-  // Optional: remove window data after hydration to avoid memory leaks
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      delete window.__INITIAL_DATA__;
-    }
-  }, []);
-
+const App = ({ data }) => {
   return (
+    <>
+    <Header adminDetail={data.AdminDetailData} propertylist={data.PropertyListData} completedPropertylist={data.CompletedPropertyListData} pageList={data.PageListData} socialList={data.SocialMediaListData}  />
+    <main>
     <Routes>
-  <Route path="/" element={<Home data={data} />} />
-  <Route path="*" element={<Home data={data} />} />
-</Routes>
-
+      <Route path="/" element={<Home data={data.homeDetailData} />} />
+    </Routes>
+    </main>
+    </>
   );
 };
 
