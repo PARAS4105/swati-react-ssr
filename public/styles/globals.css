@@ -4804,7 +4804,7 @@ label.error {
 }
 
 .home-banner-swati {
-  min-height: 90vh;
+  aspect-ratio: 960/433;
   background-color: #eff1f3;
 
 }
@@ -6250,7 +6250,7 @@ label.error {
   }
 
   .home-banner-swati {
-    min-height: 70vh;
+    aspect-ratio: 5/8;
   }
 }
 
