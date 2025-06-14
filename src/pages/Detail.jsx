@@ -4,7 +4,7 @@ import { PropertyDetail } from "../services/PropertyDetail";
 import ReadMore from "../components/ReadMore";
 import WalkthroughVideo from "../components/Walkthrough";
 import "../../public/styles/Detail.css"
-
+import { Swiper, SwiperSlide } from "swiper/react";
 
 
 export default function Detail({propertylist , completedPropertylist }){
@@ -19,38 +19,100 @@ const [projectDetail, setPropertyDetail] = useState(null);
   const [showNextImages, setShowNextImages] = useState(false);
     const [loading, setLoading] = useState(false);
 
-     async function  loadProjects (){
-         setLoading(true);
-         let ProjectsArray = [...propertylist , ...completedPropertylist];
-         let Dataobj = await ProjectsArray.find((project) => (project.slug == slug));
-         
-         if(Dataobj){
-            console.log(Dataobj)
-             setPropertyDetail(Dataobj);
-             setLoading(false);
-         }else {
-            navigate('/');
-         }
+    
+    
+    useEffect(  () => {
         
-        }
-        
+        async function  loadProjects (){
+            setLoading(true);
+            let ProjectsArray = [...propertylist , ...completedPropertylist];
+            let Dataobj = await ProjectsArray.find((project) => (project.slug == slug));
+            
+            if(Dataobj){
+               console.log(Dataobj)
+                setPropertyDetail(Dataobj);
 
-   useEffect(  () => {
-
-        // If SSR prop matches the slug, use it. Else fetch.
-        loadProjects();
-
-        if(projectDetail){
-
-            let activeImage = "";
-            if ( projectDetail.gallery_data != undefined && projectDetail.gallery_data[0].image[0].title && projectDetail.gallery_data[0].image[0].title != '') {
-                activeImage = projectDetail.gallery_data[0].image[0].title
+                 let activeImage = "";
+            if ( Dataobj.gallery_data != undefined && Dataobj.gallery_data[0].image[0].title && Dataobj.gallery_data[0].image[0].title != '') {
+                activeImage = Dataobj.gallery_data[0].image[0].title
             } else {
                 activeImage = '';
             }
-        }
-        setActiveImage(activeImage);
+            setActiveImage(activeImage);
 
+                  // ✅ Page Title
+      document.title = Dataobj.meta_title || Dataobj.title || "Default Title";
+
+      // ✅ Meta Description
+      let metaDescription = document.querySelector("meta[name='description']");
+      if (metaDescription) {
+        metaDescription.setAttribute(
+          "content",
+          Dataobj.meta_description || ""
+        );
+      } else {
+        metaDescription = document.createElement("meta");
+        metaDescription.name = "description";
+        metaDescription.content = Dataobj.meta_description || "";
+        document.head.appendChild(metaDescription);
+      }
+
+      // ✅ Meta Keywords
+      let metaKeywords = document.querySelector("meta[name='keywords']");
+      if (metaKeywords) {
+        metaKeywords.setAttribute(
+          "content",
+          Dataobj.meta_keywords || ""
+        );
+      } else {
+        metaKeywords = document.createElement("meta");
+        metaKeywords.name = "keywords";
+        metaKeywords.content = Dataobj.meta_keywords || "";
+        document.head.appendChild(metaKeywords);
+      }
+
+      // ✅ OG Title
+      let ogTitle = document.querySelector("meta[property='og:title']");
+      if (ogTitle) {
+        ogTitle.setAttribute("content", Dataobj.meta_title || Dataobj.title || "");
+      } else {
+        ogTitle = document.createElement("meta");
+        ogTitle.setAttribute("property", "og:title");
+        ogTitle.content = Dataobj.meta_title || Dataobj.title || "";
+        document.head.appendChild(ogTitle);
+      }
+
+      // ✅ OG Description
+      let ogDescription = document.querySelector("meta[property='og:description']");
+      if (ogDescription) {
+        ogDescription.setAttribute("content", Dataobj.meta_description || "");
+      } else {
+        ogDescription = document.createElement("meta");
+        ogDescription.setAttribute("property", "og:description");
+        ogDescription.content = Dataobj.meta_description || "";
+        document.head.appendChild(ogDescription);
+      }
+
+      // ✅ OG Image
+      let ogImage = document.querySelector("meta[property='og:image']");
+      const imageUrl = Dataobj?.banners_data?.images?.[0]?.image_web_full || "";
+      if (ogImage) {
+        ogImage.setAttribute("content", imageUrl);
+      } else {
+        ogImage = document.createElement("meta");
+        ogImage.setAttribute("property", "og:image");
+        ogImage.content = imageUrl;
+        document.head.appendChild(ogImage);
+      }
+
+                setLoading(false);
+            }else {
+               navigate('/');
+            }
+           
+           }
+        // If SSR prop matches the slug, use it. Else fetch.
+        loadProjects();
   }, [slug]); 
 
     useEffect(() => {
