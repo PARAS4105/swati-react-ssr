@@ -3,9 +3,9 @@ import { useNavigate, useParams } from "react-router";
 import { PropertyDetail } from "../services/PropertyDetail";
 import ReadMore from "../components/ReadMore";
 import WalkthroughVideo from "../components/Walkthrough";
-import "../styles/Detail.css"
-  let fancyboxInstance;
-  
+import "../../public/styles/Detail.css"
+
+
 
 export default function Detail({propertylist , completedPropertylist }){
    const { slug } = useParams();
@@ -55,13 +55,12 @@ const [projectDetail, setPropertyDetail] = useState(null);
 
     useEffect(() => {
 
+        let fancyboxInstance;
         if (window.innerWidth < 767) {
             setMobileScreen(true);
           } 
-
-
          import("@fancyapps/ui").then(({ Fancybox }) => {
-      // ✅ Bind your selectors using Fancybox v4
+            
           fancyboxInstance = Fancybox.bind("[data-fancybox=project-gallery-fancy]", {
                 Carousel: {
                 infinite: true,

@@ -121,8 +121,10 @@ app.get("*", async (req, res) => {
         <head>
           <meta charset="UTF-8" />
           <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-          <title>SSR App</title>
+          <title>Swati Procon - Luxury Residential & Commercial Projects in Ahmedabad</title>
           <link rel="preconnect" href="https://fonts.googleapis.com">
+          <link rel="preload" href="/globals.css" as="style">
+          <link rel="stylesheet" href="/globals.css">
           <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
           	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,500,0,0" />
         </head>

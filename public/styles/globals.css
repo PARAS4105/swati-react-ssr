@@ -4787,10 +4787,19 @@ label.error {
     align-items: center
 }
 
-/* 
+
 #reecosys-template-home-section-2 {
     min-height: 500px; 
-} */
+  }
+  
+  .home-banner-swati {
+  min-height: 90vh; 
+
+}
+
+.project-info-list{
+  min-height: 64px;
+}
 
 @media only screen and (max-width: 1680px) {
   html {
@@ -6219,6 +6228,14 @@ label.error {
     margin: 0 auto;
     padding-top: 5rem !important;
   }
+
+.project-info-list{
+  min-height: 75px;
+}
+  
+#reecosys-template-home-section-2 {
+    min-height: 700px; 
+}
 }
 
 @media only screen and (max-width: 600px) {}

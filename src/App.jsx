@@ -1,10 +1,10 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
-import "./styles/globals.css"
 import Home from "./pages/Home";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Detail from "./pages/Detail"
+import "../public/styles/globals.css"
 if (typeof window !== "undefined") {
   import("@fancyapps/ui/dist/fancybox/fancybox.css");
 }
