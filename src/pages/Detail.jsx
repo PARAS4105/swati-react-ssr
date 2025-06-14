@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from "react"
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import { PropertyDetail } from "../services/PropertyDetail";
 import ReadMore from "../components/ReadMore";
 import WalkthroughVideo from "../components/Walkthrough";
 import "../styles/Detail.css"
   let fancyboxInstance;
+  
 
-export default function Detail({data}){
+export default function Detail({propertylist , completedPropertylist }){
    const { slug } = useParams();
+   const navigate = useNavigate()
 
-const [projectDetail, setPropertyDetail] = useState(
-    data[0] || null
-  );
+const [projectDetail, setPropertyDetail] = useState(null);
   const [countryFlag, setCountryFlag] = useState(false);
   const [isMobilescreen , setMobileScreen] = useState(false);
   const [activeImage , setActiveImage] = useState("");
@@ -19,23 +19,26 @@ const [projectDetail, setPropertyDetail] = useState(
   const [showNextImages, setShowNextImages] = useState(false);
     const [loading, setLoading] = useState(false);
 
-     function loadProjects (){
-        if (projectDetail && projectDetail.slug === slug) {
-          // Data is correct, do nothing.
-          console.log("✅ Using SSR data");
-          return;
+     async function  loadProjects (){
+         setLoading(true);
+         let ProjectsArray = [...propertylist , ...completedPropertylist];
+         let Dataobj = await ProjectsArray.find((project) => (project.slug == slug));
+         
+         if(Dataobj){
+            console.log(Dataobj)
+             setPropertyDetail(Dataobj);
+             setLoading(false);
+         }else {
+            navigate('/');
+         }
+        
         }
-    
-        // Otherwise, fetch new data for new slug.
-        setLoading(true);
-        //  let data = ;
-            // setPropertyDetail(data[0])
-        }
+        
 
    useEffect(  () => {
 
         // If SSR prop matches the slug, use it. Else fetch.
-
+        loadProjects();
 
         if(projectDetail){
 
@@ -46,8 +49,6 @@ const [projectDetail, setPropertyDetail] = useState(
                 activeImage = '';
             }
         }
-
-        loadProjects(); 
         setActiveImage(activeImage);
 
   }, [slug]); 
@@ -80,12 +81,14 @@ const [projectDetail, setPropertyDetail] = useState(
     };
     }, [slug]);
 
+    
+    if(!loading && projectDetail){
       return (
         <>
          <div className="reecosys-main-wrapper reecosys-detail-wrapper" id="reecosys-main-wrapper"
                  onClick={() => {setCountryFlag(false)}}>
                     <div id="reecosys-list-wrapper" className="relative">
-                        {/* <section className={`reecosys-section reecosys-banner-section relative ${projectDetail.project_id == 722 ? "four-bhk-banner" : "" } `} id="reecosys-project-detail-section-1">
+                        <section className={`reecosys-section reecosys-banner-section relative ${projectDetail.project_id == 722 ? "four-bhk-banner" : "" } `} id="reecosys-project-detail-section-1">
                 { projectDetail.project_id == 801 && (<div className="project_signia_banner_text" >
                     <div className="banner-title banner-title-border-div ">
                         <h2 className="white-color">
@@ -142,9 +145,9 @@ const [projectDetail, setPropertyDetail] = useState(
     
                     </div>)}
     
-                </section> */}
+                </section>
     
-     { ( projectDetail.highlights != undefined  || projectDetail.rera_number != undefined || projectDetail.document_data != undefined || projectDetail.big_text_pain != undefined) && (
+     { (projectDetail.highlights != undefined  || projectDetail.rera_number != undefined || projectDetail.document_data != undefined || projectDetail.big_text_pain != undefined) && (
         <section className="reecosys-section relative section-padding" id="reecosys-project-detail-section-3">
                 <div className="main-container">
                     <div className=" inner-flex inner-flex-small2">
@@ -757,6 +760,11 @@ const [projectDetail, setPropertyDetail] = useState(
                 </div>
                 </>
       );
+    }else {
+        return (
+            <h1>Please Wait</h1>
+        )
+    }
 }
 
 

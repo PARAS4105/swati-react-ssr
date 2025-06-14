@@ -103,8 +103,7 @@ export default function Home({ homeDetails, propertylist, completedPropertylist}
                                          <div className="relative">
                                         {project.banner_data.image_web_type === 'image' && (
                                         <div className="project-img-list overflow relative"> 
-                                            <img  loading="lazy"   src={`https://ik.imagekit.io/ol8mhbfe8/swati-procon/banner/${project.banner_data.image_web}`}
-                                            style={{aspectRatio : "481/376"}}
+                                            <img  loading="lazy"   src={`https://ik.imagekit.io/ol8mhbfe8/swati-procon//${project.banner_data.image_web_full}&w=730&h=570`}
                                             alt={project.project_title} />
                                             {/* <div className="animationOverlay"></div> */}
                                         </div>
@@ -181,8 +180,8 @@ export default function Home({ homeDetails, propertylist, completedPropertylist}
                                     <div className="relative">
                                         { project_list_data.banner_data.image_web_type == 'image' && (
                                             <div className="project-img-list overflow relative">
-                                            <img  loading="lazy"   src={`https://ik.imagekit.io/ol8mhbfe8/swati-procon/banner/${project_list_data.banner_data.image_web}`}
-                                            style={{aspectRatio : "481/376"}} />
+                                            <img loading="lazy"  style={{aspectRatio : "32/25"}}
+                                            src={`${project_list_data.banner_data.image_web_full}&w=730&h=570`} alt={project_list_data.project_title} />
                                         </div>)}
 
                                         { project_list_data.banner_data.image_web_type == 'video' && (

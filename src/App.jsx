@@ -15,7 +15,7 @@ const App = ({ data }) => {
     <main>
     <Routes>
       <Route path="/" element={<Home homeDetails={data.homeDetailData} propertylist={data.PropertyListData} completedPropertylist={data.CompletedPropertyListData} />} />
-      <Route path="/:slug" element={<Detail data={data.propertyDetailData} />} />
+      <Route path="/:slug" element={<Detail propertylist={data.PropertyListData} completedPropertylist={data.CompletedPropertyListData} />} />
     </Routes>
     </main>
     <Footer adminDetail={data.AdminDetailData} propertylist={data.PropertyListData} completedPropertylist={data.CompletedPropertyListData} pageList={data.PageListData} socialList={data.SocialMediaListData}  />

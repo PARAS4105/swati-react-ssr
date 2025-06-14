@@ -125,8 +125,9 @@ async function getCategory() {
                     <div className="relative">
                         {data.banner_data.image_web_type == 'image' && <div className="project-img-list overflow relative">
                             <img loading="lazy"
-                                src={`${data.banner_data.image_web_full}&w=430&h=340`}
-                                alt={data.project_title}  style={{aspectRatio: "32/25"}} />
+                                src={`https://ik.imagekit.io/ol8mhbfe8/swati-procon/banner/${data.banner_data.image_web}`}
+                                style={{aspectRatio : "32/25"}}
+                                alt="reecosys" />
                         </div>}
 
                         { data.banner_data.image_web_type == 'video' && <div className="project-img-list relative" >
@@ -220,7 +221,8 @@ async function getCategory() {
 
                                           <div className="w100 relative">
                                               <img loading="lazy"
-                                                  src={`${data.banner_data.image_web_full}&w=430&h=340`}
+                                                  src={`https://ik.imagekit.io/ol8mhbfe8/swati-procon/banner/${data.banner_data.image_web}`}
+                                                  style={{aspectRatio : "32/25"}}
                                                   alt="reecosys" />
 
                                           </div>
@@ -263,9 +265,9 @@ async function getCategory() {
                                     <div className="inner-flex inner-flex-smallest">
                                         <div className="w100 relative">
                                             <img loading="lazy"
-                                                  src={`${data.banner_data.image_web_full}&w=430&h=340`}
-                                                //   style={{aspectRatio  : "241/188" }}
-                                                alt="reecosys" />
+                                                  src={`https://ik.imagekit.io/ol8mhbfe8/swati-procon/banner/${data.banner_data.image_web}`}
+                                                  style={{aspectRatio : "32/25"}}
+                                                  alt="reecosys" />
                                         </div>
                                         <div className=" w100 inner-flex inner-flex-smallest">
 

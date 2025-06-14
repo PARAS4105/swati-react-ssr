@@ -317,10 +317,10 @@ const toggleAccordion = (index) => {
                                             <div className="inner-flex inner-flex-small">
                                                 <div className="w100 relative">
                                                 
-                                                    <img 
-                                                    loading="lazy"
-                                                    src={`${data.banner_data.image_web_full}&w=430&h=340`}
-                                                    alt="reecosys" />
+                                                   <img loading="lazy"
+                                                  src={`https://ik.imagekit.io/ol8mhbfe8/swati-procon/banner/${data.banner_data.image_web}`}
+                                                  style={{aspectRatio : "32/25"}}
+                                                  alt="reecosys" />
                                                 </div>
                                                 <div className=" w100 inner-flex ">
                                                     <div className="section-paragraph">
@@ -379,10 +379,10 @@ const toggleAccordion = (index) => {
                                             <div className="inner-flex inner-flex-small">
 
                                                 <div className="w100 relative">
-                                                    <img 
-                                                    loading="lazy"
-                                                    src={`${data.banner_data.image_web_full}&w=430&h=340`}
-                                                    alt="reecosys"/>
+                                                    <img loading="lazy"
+                                                  src={`https://ik.imagekit.io/ol8mhbfe8/swati-procon/banner/${data.banner_data.image_web}`}
+                                                  style={{aspectRatio : "32/25"}}
+                                                  alt="reecosys" />
                                                 </div>
                                                 <div className=" w100 inner-flex ">
                                                     <div className="section-paragraph">
