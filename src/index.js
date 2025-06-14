@@ -10,7 +10,7 @@ import { hydrateRoot } from "react-dom/client";
 
 
 const data = window.__INITIAL_DATA__ || {};
-console.log("📦 Hydration received data:", data); // You should see real data here
+// console.log("📦 Hydration received data:", data); // You should see real data here
 
 hydrateRoot(
   document.getElementById("root"),

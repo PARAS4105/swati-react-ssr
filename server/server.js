@@ -34,69 +34,107 @@ const PORT = process.env.PORT || 3000;
 // Serve static assets (JS, CSS, images)
 app.use(express.static(path.resolve(__dirname, "../public")));
 
+
 // Handle all routes
 app.get("*", async (req, res) => {
   try {
-    const url = req.url;
-    // Prepare initial empty data structure
-    const data = {
-    homeDetailData: null,
-    PropertyListData: [],
-    CompletedPropertyListData: [],
-    propertyDetailData: null,
-    SocialMediaListData: [],
-    PageListData: [],
-    AdminDetailData: []
-  };
-  
-  data.AdminDetailData = await AdminDetail();
-  data.SocialMediaListData = await SocialMediaList();
-  data.PropertyListData = await PropertyList();
-  data.PageListData = await PageList();
-  data.CompletedPropertyListData = await CompletedPropertyList();
-  // Parallel fetch core data
- // Home page
-if (url === "/") {
-  data.homeDetailData = await HomeDetail();
-} else {
-  const slug = url.replace("/", "");
-  const matchedProperty = data.PropertyListData.find(item => item.slug === slug);
-  if (matchedProperty) {
-    data.propertyDetailData = await PropertyDetail(slug);
-  }
-}
+    console.log("🚀 [SSR] Incoming request:", req.url);
 
-    // Render App to string using StaticRouter
+
+    // Determine slug: if root, slug = null
+    // const parts = req.path.split("/").filter(Boolean); // remove empty strings
+
+      // If no parts => home
+      // If one part => that's the slug
+      // If more than one part => probably invalid => 404 or fallback
+      // let slug = null;
+
+      // if (parts.length === 1) {
+      //   slug = parts[0];
+      // } else if (parts.length > 1) {
+      //   console.log(`⚠️ Unexpected nested path: ${req.path}`);
+      //   res.status(404).send("Page Not Found");
+      //   return;
+      // }
+
+  // console.log("✅ Slug:", slug);
+
+    // Prepare data object
+    const data = {
+      homeDetailData: null,
+      PropertyListData: [],
+      CompletedPropertyListData: [],
+      SocialMediaListData: [],
+      PageListData: [],
+      AdminDetailData: []
+    };
+
+    // Fetch common data in parallel
+    const [
+      adminData,
+      socialData,
+      propertyList,
+      pageList,
+      completedList
+    ] = await Promise.all([
+      AdminDetail(),
+      SocialMediaList(),
+      PropertyList(),
+      PageList(),
+      CompletedPropertyList()
+    ]);
+
+    data.AdminDetailData = adminData;
+    data.SocialMediaListData = socialData;
+    data.PropertyListData = propertyList;
+    data.PageListData = pageList;
+    data.CompletedPropertyListData = completedList;
+
+    if (req.url === "/") {
+      data.homeDetailData = await HomeDetail();
+    } 
+    // } else if(slug) {
+    //   data.propertyDetailData = await PropertyDetail(slug);
+    //   if (!data.propertyDetailData) {
+    //     console.log(`⚠️ No property found for slug "${slug}". Sending 404.`);
+    //     res.status(404).send("Page Not Found");
+    //     return;
+    //   }
+    // }else {
+    //   res.status(404).send("Page Not Found");
+    //   return;
+    // }
+
+    // ✅ Render React to string with StaticRouter
     const appHtml = renderToString(
-      <StaticRouter location={url}>
+      <StaticRouter location={req.url}>
         <ErrorBoundary>
           <App data={data} />
         </ErrorBoundary>
       </StaticRouter>
     );
 
-    // Build final HTML
+    // ✅ Inject to final HTML
     const html = `
-  <!DOCTYPE html>
-  <html lang="en">
-    <head>
-      <meta charset="UTF-8" />
-      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <title>SSR App</title>
-
-      <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
-      <link rel="stylesheet" href="/styles.css" />
-    </head>
-    <body>
-      <div id="root">${appHtml}</div>
-      <script>
-        window.__INITIAL_DATA__ = ${JSON.stringify(data).replace(/</g, '\\u003c')};
-      </script>
-      <script src="/bundle.js?v=${Date.now()}"></script>
-    </body>
-  </html>
-`;
+      <!DOCTYPE html>
+      <html lang="en">
+        <head>
+          <meta charset="UTF-8" />
+          <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+          <title>SSR App</title>
+          <link rel="preconnect" href="https://fonts.googleapis.com">
+          <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+          	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,500,0,0" />
+        </head>
+        <body>
+          <div id="root">${appHtml}</div>
+          <script>
+            window.__INITIAL_DATA__ = ${JSON.stringify(data).replace(/</g, '\\u003c')};
+          </script>
+          <script src="/bundle.js?v=${Date.now()}"></script>
+        </body>
+      </html>
+    `;
 
     res.status(200).send(html);
   } catch (err) {
@@ -104,8 +142,20 @@ if (url === "/") {
     res.status(500).send("Internal Server Error");
   }
 });
+// app.get("/:slug", ssrHandler );
 
-// Start server
-app.listen(PORT, () => {
-  console.log(`✅ SSR Server listening at http://localhost:${PORT}`);
-});
+
+
+let server;
+function startServer() {
+  const PORT = process.env.PORT || 3000;
+  server = app.listen(PORT, () => {
+    console.log(`✅ SSR Server listening at http://localhost:${PORT}`);
+    
+  });
+}
+startServer();
+// Handle hot reload
+if (module.hot) {
+  module.hot.dispose(() => server && server.close());
+}

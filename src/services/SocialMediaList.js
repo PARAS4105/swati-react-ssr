@@ -19,6 +19,8 @@ export const SocialMediaList = async () => {
     const data = await response.json(); // ✅ Parse JSON
     if(data.success == 1){
       return data.data; 
+    }else {
+       return null
     }
 
   } catch (error) {

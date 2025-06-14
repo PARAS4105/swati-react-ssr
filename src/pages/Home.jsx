@@ -3,19 +3,21 @@
 import React from "react";
 import {  useEffect, useState } from "react";
 import { Link } from 'react-router-dom'; 
-
+import { HomeDetail } from '../services/HomeDetail'
 
 
       
-export default function Home({ homeDetailsData, propertylist, completedPropertylist}) {
+export default function Home({ homeDetails, propertylist, completedPropertylist}) {
 
   const [isMobilescreen , setMobileScreen] = useState(false);
-
- 
+  const [homeDetailsData, setHomeDetail] = useState(homeDetails || null);
 
    useEffect(() => {
     if(window.innerWidth < 767){
         setMobileScreen(true)
+    }
+    if (!homeDetailsData) {
+      HomeDetail().then(data => setHomeDetail(data));
     }
   }, []);
 
