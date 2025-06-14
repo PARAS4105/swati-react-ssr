@@ -93,17 +93,6 @@ app.get("*", async (req, res) => {
     if (req.url === "/") {
       data.homeDetailData = await HomeDetail();
     } 
-    // } else if(slug) {
-    //   data.propertyDetailData = await PropertyDetail(slug);
-    //   if (!data.propertyDetailData) {
-    //     console.log(`⚠️ No property found for slug "${slug}". Sending 404.`);
-    //     res.status(404).send("Page Not Found");
-    //     return;
-    //   }
-    // }else {
-    //   res.status(404).send("Page Not Found");
-    //   return;
-    // }
 
     // ✅ Render React to string with StaticRouter
     const appHtml = renderToString(
@@ -123,8 +112,8 @@ app.get("*", async (req, res) => {
           <meta name="viewport" content="width=device-width, initial-scale=1.0" />
           <title>Swati Procon - Luxury Residential & Commercial Projects in Ahmedabad</title>
           <link rel="preconnect" href="https://fonts.googleapis.com">
-          <link rel="preload" href="/globals.css" as="style">
-          <link rel="stylesheet" href="/globals.css">
+          <link rel="preload" href="/styles/globals.css" as="style">
+          <link rel="stylesheet" href="/styles/globals.css">
           <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
           	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,500,0,0" />
         </head>

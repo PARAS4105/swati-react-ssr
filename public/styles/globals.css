@@ -165,18 +165,26 @@
 
 @font-face {
   font-family: "NeueMontreal-Regular";
-   src: url("../../public/fonts/neue-montreal/NeueMontreal-Regular.woff") format("woff2"),
-     url("../../public/fonts/neue-montreal/NeueMontreal-Regular.woff") format("woff");
+   src: url("../fonts/neue-montreal/NeueMontreal-Regular.woff2") format("woff2"),
+    url("../fonts/neue-montreal/NeueMontreal-Regular.woff") format("woff");
   font-weight: normal;
   font-style: normal;
   font-display: swap;
 }
+/* @font-face {
+  font-family: "NeueMontreal-Regular";
+   src: url("../fonts/neue-montreal/NeueMontreal-Regular.woff") format("woff2"),
+     url("../fonts/neue-montreal/NeueMontreal-Regular.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+} */
 
 
 @font-face {
   font-family: "NeueMontreal-Bold";
-  src: url("../../public/fonts/neue-montreal/NeueMontreal-Bold.woff2") format("woff2"),
-    url("../../public/fonts/neue-montreal/NeueMontreal-Bold.woff") format("woff");
+  src: url("../fonts/neue-montreal/NeueMontreal-Bold.woff2") format("woff2"),
+    url("../fonts/neue-montreal/NeueMontreal-Bold.woff") format("woff");
   font-weight: bold;
   font-style: normal;
   font-display: swap;
@@ -184,8 +192,8 @@
 
 @font-face {
   font-family: "Neue Montreal Medium";
-  src: url("../../public/fonts/neue-montreal/NeueMontreal-Medium.woff2") format("woff2"),
-    url("../../public/fonts/neue-montreal/NeueMontreal-Medium.woff") format("woff");
+  src: url("../fonts/neue-montreal/NeueMontreal-Medium.woff2") format("woff2"),
+    url("../fonts/neue-montreal/NeueMontreal-Medium.woff") format("woff");
   font-weight: 500;
   font-style: normal;
   font-display: swap;
@@ -193,8 +201,8 @@
 
 @font-face {
   font-family: 'Breathing';
-  src: url('../../public/fonts/breathing/BreathingPersonalUseOnly-Reg.woff2') format('woff2'),
-    url('../../public/fonts/breathing/BreathingPersonalUseOnly-Reg.woff') format('woff');
+  src: url('../fonts/breathing/BreathingPersonalUseOnly-Reg.woff2') format('woff2'),
+    url('../fonts/breathing/BreathingPersonalUseOnly-Reg.woff') format('woff');
   font-weight: 100;
   font-style: normal;
   font-display: swap;
