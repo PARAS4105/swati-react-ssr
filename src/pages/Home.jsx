@@ -31,10 +31,11 @@ export default function Home({ homeDetails, propertylist, completedPropertylist}
       <section id="home-banner-section-1" className="overflow_section piramyd-banner-section relative pt0">
         <div className="home-banner-swati">
             <Link to="Swati-18/">
-            { !isMobilescreen &&  <img src="https://ik.imagekit.io/ol8mhbfe8/swati-procon/swati-18-web-banner.webp" alt="Swati 18 Banner" className="hide-tab-mobile" />}
-            {/* { !isMobilescreen &&  <img src="/images/swati-18-web-banner.webp" alt="Swati 18 Banner" className="hide-tab-mobile" />} */}
-            {isMobilescreen && <img src="https://ik.imagekit.io/ol8mhbfe8/swati-procon/swati-18-mob-banner.webp"    style={{height: "100%" , objectPosition: "bottom"}} alt="Swati 18 Banner" 
-                className="visible-tab-mobile" />}
+            {/* { !isMobilescreen &&  <img src="https://ik.imagekit.io/ol8mhbfe8/swati-procon/swati-18-web-banner.webp" alt="Swati 18 Banner" className="hide-tab-mobile" />} */}
+            { !isMobilescreen &&  <img src="/images/swati-18-web-banner.webp" alt="Swati 18 Banner" className="hide-tab-mobile" />}
+            {/* {isMobilescreen && <img src="https://ik.imagekit.io/ol8mhbfe8/swati-procon/swati-18-mob-banner.webp"    style={{height: "100%" , objectPosition: "bottom"}} alt="Swati 18 Banner" 
+                className="visible-tab-mobile" />} */}
+            {isMobilescreen && <img src="/images/swati-18-mob-banner.webp" style={{height: "100%" , objectPosition: "bottom"}} alt="Swati 18 Banner" className="visible-tab-mobile" />}
             </Link>
         </div>
       </section>
