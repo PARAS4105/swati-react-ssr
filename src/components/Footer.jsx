@@ -57,32 +57,40 @@ const toggleAccordion = (index) => {
                 </div>
               </div>
               <ul className="inner-flex inner-flex-small marginl-auto">
-                    <div className="section-footer-title">
-                        <p className="">Quick links</p>
-                    </div>
-                    <div className="inner-flex inner-flex-smallest footer-navigation-link">
-                        <li className="wfc footer-hover">
-                            <Link to="projects" className={pathname == '/projects' ? active_page : ""  }>
-                                <p className="capitalize footer-text"> Projects </p>
+                <li className="section-footer-title">
+                    <p>Quick links</p>
+                </li>
+
+                <li className="footer-navigation-link">
+                    <ul className="inner-flex inner-flex-smallest">
+                    <li className="wfc footer-hover">
+                        <Link to="projects" className={pathname === '/projects' ? active_page : ""}>
+                        <p className="capitalize footer-text">Projects</p>
+                        </Link>
+                    </li>
+
+                    {pageList.map((data, index) => (
+                        data.page_type === '' && data.is_profile_page === "0" && (
+                        <li key={index} className="wfc footer-hover">
+                            <Link
+                            to={data.slug}
+                            className={pathname === data.slug ? "active_page" : ""}
+                            target={data.slug_target}
+                            >
+                            <p className="capitalize footer-text">{data.page_name}</p>
                             </Link>
                         </li>
-                         { pageList.map((data , index) => (
-                          data.page_type === '' && data.is_profile_page === "0" && (
-                              <li key={index} className="wfc footer-hover">
-                                  <Link to={data.slug} className={`${pathname === data.slug ? "active_page" : ""}`} target={data.slug_target}>
-                                      <p className="capitalize footer-text">{data.page_name}</p>
-                                  </Link>
-                              </li>
-                          )
-                        ))}
-                       
-                    </div>
+                        )
+                    ))}
+                    </ul>
+                </li>
                 </ul>
               <ul className="inner-flex inner-flex-small ">
-                    <div className="section-footer-title">
+                    <li className="section-footer-title">
                         <p className="">Ongoing</p>
-                    </div>
-                    <div className="inner-flex inner-flex-smallest footer-navigation-link">
+                    </li>
+                    <li className="footer-navigation-link">
+                        <ul className="inner-flex inner-flex-smallest " >
                         { propertylist != null && propertylist.length > 0 && propertylist.map((data , index) => (
                           data.status != 'upcoming'  && (
                               <li key={index} className="wfc footer-hover">
@@ -92,13 +100,15 @@ const toggleAccordion = (index) => {
                               </li>
                           )
                         ))}
-                    </div>
+                        </ul>
+                    </li>
                 </ul>
               <ul className="inner-flex inner-flex-small ">
-                    <div className="section-footer-title">
+                    <li className="section-footer-title">
                         <p className="">Completed</p>
-                    </div>
-                    <div className="inner-flex inner-flex-smallest footer-navigation-link">
+                    </li>
+                    <li className=" footer-navigation-link">
+                        <ul className="inner-flex inner-flex-smallest" >
                         { completedPropertylist != null && completedPropertylist.length > 0 && completedPropertylist.map((data , index) => (
                           (
                               <li key={index} className="wfc footer-hover">
@@ -108,83 +118,114 @@ const toggleAccordion = (index) => {
                               </li>
                           )
                         ))}
-                    </div>
+                        </ul>
+                    </li>
                 </ul>
 
-                <ul className="inner-flex inner-flex-small ">
-                    <div className="section-footer-title">
-                        <p className="">Contact</p>
-                    </div>
-                    <div className="inner-flex  footer-navigation-link footer-navigation-link-contact">
+               <ul className="inner-flex inner-flex-small">
+                    {/* Section title */}
+                    <li className="section-footer-title">
+                        <p>Contact</p>
+                    </li>
+
+                    {/* Contact links */}
+                    <li className="footer-navigation-link footer-navigation-link-contact">
+                        <ul className="inner-flex">
                         <li className="wfc footer-hover">
                             <a href="tel:+918000585555" className="footer-row">
-                                <div className="footer-row-icon">
-                                    <img src="https://ik.imagekit.io/ol8mhbfe8/swati-procon/icon/PhoneCall.svg" alt=""/>
-                                </div>
-                                <p className="capitalize footer-text"> +91 8000 58 5555 </p>
+                            <span className="footer-row-icon">
+                                <img src="https://ik.imagekit.io/ol8mhbfe8/swati-procon/icon/PhoneCall.svg" alt="Phone Icon" />
+                            </span>
+                            <p className="capitalize footer-text">+91 8000 58 5555</p>
                             </a>
                         </li>
+
                         <li className="wfc footer-hover">
-                            <a href="mailto:info@swatiprocon.com" className="footer-row"  rel="nofollow">
-                                <div className="footer-row-icon">
-                                    <img src="https://ik.imagekit.io/ol8mhbfe8/swati-procon/icon/EnvelopeOpen.svg" alt=""/>
-                                </div>
-                                <p className="footer-text"> info@swatiprocon.com </p>
+                            <a href="mailto:info@swatiprocon.com" className="footer-row" rel="nofollow">
+                            <span className="footer-row-icon">
+                                <img src="https://ik.imagekit.io/ol8mhbfe8/swati-procon/icon/EnvelopeOpen.svg" alt="Email Icon" />
+                            </span>
+                            <p className="footer-text">info@swatiprocon.com</p>
                             </a>
                         </li>
+
                         <li className="wfc footer-hover">
-                            <a href="https://maps.app.goo.gl/y4xerH5FEnmuKh7N8" target="_blank" className="footer-row"  rel="noopener noreferrer">
-                                <div className="footer-row-icon">
-                                    <img src="https://ik.imagekit.io/ol8mhbfe8/swati-procon/icon/MapPinArea.svg" alt=""/>
-                                </div>
-                                <p className="capitalize footer-text"> 11 Floor, Signature 1, Near Divya<br/> Bhaskar House,
-                                    S.G Highway, <br/>Ahmedabad - 380051 </p>
-                          </a>
-                      </li>
-                    </div>
-                    
-                   { socialList != null && socialList.length > 0 && (
-                    <div className="flex-row inner-flex-medium">
+                            <a
+                            href="https://maps.app.goo.gl/y4xerH5FEnmuKh7N8"
+                            target="_blank"
+                            className="footer-row"
+                            rel="noopener noreferrer"
+                            >
+                            <span className="footer-row-icon">
+                                <img src="https://ik.imagekit.io/ol8mhbfe8/swati-procon/icon/MapPinArea.svg" alt="Map Icon" />
+                            </span>
+                            <p className="capitalize footer-text">
+                                11 Floor, Signature 1, Near Divya<br />
+                                Bhaskar House, S.G Highway,<br />
+                                Ahmedabad - 380051
+                            </p>
+                            </a>
+                        </li>
+                        </ul>
+                    </li>
+
+                    {/* Social links */}
+                    {socialList != null && socialList.length > 0 && (
+                        <li className="flex-row inner-flex-medium">
                         <ul className="flex-row alc">
-                            { socialList.map((social, index) => (
-                                <li key={index}>
-                                    {social.name === 'facebook' && (
-                                        <a href={social.slug} target="_blank" rel="noopener noreferrer">
-                                            <img src="https://ik.imagekit.io/ol8mhbfe8/swati-procon/icon/social-icons/facebook.svg" alt="Facebook"
-                                                className="social-media-icon-footer common-icon" />
-                                        </a>
-                                    )}
-                                    {social.name === 'instagram' && (
-                                        <a href={social.slug} target="_blank" rel="noopener noreferrer">
-                                            <img src="https://ik.imagekit.io/ol8mhbfe8/swati-procon/icon/social-icons/instagram.svg" alt="Instagram"
-                                                className="social-media-icon-footer common-icon" />
-                                        </a>
-                                    )}
-                                    {social.name === 'twitter' && (
-                                        <a href={social.slug} target="_blank" rel="noopener noreferrer">
-                                            <img src="https://ik.imagekit.io/ol8mhbfe8/swati-procon/icon/social-icons/twitter.svg" alt="Twitter"
-                                                className="social-media-icon-footer common-icon" />
-                                        </a>
-                                    )}
-                                    {social.name === 'linkedin' && (
-                                        <a href={social.slug} target="_blank" rel="noopener noreferrer">
-                                            <img src="https://ik.imagekit.io/ol8mhbfe8/swati-procon/icon/social-icons/linkedin.svg" alt="LinkedIn"
-                                                className="social-media-icon-footer common-icon" />
-                                        </a>
-                                    )}
-                                    {social.name === 'youtube' && (
-                                        <a href={social.slug} target="_blank" rel="noopener noreferrer">
-                                            <img src="https://ik.imagekit.io/ol8mhbfe8/swati-procon/icon/social-icons/youtube.svg" alt="YouTube"
-                                                className="social-media-icon-footer common-icon" />
-                                        </a>
-                                    )}
-                                </li>
+                            {socialList.map((social, index) => (
+                            <li key={index}>
+                                {social.name === 'facebook' && (
+                                <a href={social.slug} target="_blank" rel="noopener noreferrer">
+                                    <img
+                                    src="https://ik.imagekit.io/ol8mhbfe8/swati-procon/icon/social-icons/facebook.svg"
+                                    alt="Facebook"
+                                    className="social-media-icon-footer common-icon"
+                                    />
+                                </a>
+                                )}
+                                {social.name === 'instagram' && (
+                                <a href={social.slug} target="_blank" rel="noopener noreferrer">
+                                    <img
+                                    src="https://ik.imagekit.io/ol8mhbfe8/swati-procon/icon/social-icons/instagram.svg"
+                                    alt="Instagram"
+                                    className="social-media-icon-footer common-icon"
+                                    />
+                                </a>
+                                )}
+                                {social.name === 'twitter' && (
+                                <a href={social.slug} target="_blank" rel="noopener noreferrer">
+                                    <img
+                                    src="https://ik.imagekit.io/ol8mhbfe8/swati-procon/icon/social-icons/twitter.svg"
+                                    alt="Twitter"
+                                    className="social-media-icon-footer common-icon"
+                                    />
+                                </a>
+                                )}
+                                {social.name === 'linkedin' && (
+                                <a href={social.slug} target="_blank" rel="noopener noreferrer">
+                                    <img
+                                    src="https://ik.imagekit.io/ol8mhbfe8/swati-procon/icon/social-icons/linkedin.svg"
+                                    alt="LinkedIn"
+                                    className="social-media-icon-footer common-icon"
+                                    />
+                                </a>
+                                )}
+                                {social.name === 'youtube' && (
+                                <a href={social.slug} target="_blank" rel="noopener noreferrer">
+                                    <img
+                                    src="https://ik.imagekit.io/ol8mhbfe8/swati-procon/icon/social-icons/youtube.svg"
+                                    alt="YouTube"
+                                    className="social-media-icon-footer common-icon"
+                                    />
+                                </a>
+                                )}
+                            </li>
                             ))}
                         </ul>
-                    </div>
-                    )}
-
-                </ul>
+                        </li>
+                      )}
+                    </ul>
 
             </div>
             <div className="reecosys_footer_copyright section-padding-small flex-row j-c-sb alc ">
@@ -200,12 +241,11 @@ const toggleAccordion = (index) => {
                               if (data.page_type === 'legal') {
                                 return (
                                   <li key={index} className="wfc footer-hover">
-                                    <a
-                                      to={data.slug}
+                                    <Link to={data.slug}
                                       className={pathname === data.slug ? 'active_page' : ''}
                                     >
                                       <p className="capitalize footer-gray">{data.page_name}</p>
-                                    </a>
+                                    </Link>
                                   </li>
                                 );
                               } else {
@@ -477,41 +517,54 @@ const toggleAccordion = (index) => {
                             </div>
                         </li>
                         <li>
-                            <ul>
-                                <div className="section-footer-title">
-                                    <p className="">Contact</p>
-                                </div>
-                                <div className="inner-flex  footer-navigation-link footer-navigation-link-contact">
+                            <ul className="">
+                                {/* Section title should be a <li> */}
+                                <li className="section-footer-title">
+                                    <p>Contact</p>
+                                </li>
+
+                                {/* Contact items wrapper should be a nested <ul> inside a <li> */}
+                                <li>
+                                    <ul className="inner-flex footer-navigation-link footer-navigation-link-contact">
                                     <li className="wfc footer-hover">
-                                        
                                         <a href="tel:+918000585555" className="footer-row" rel="nofollow">
-                                            <div className="footer-row-icon">
-                                                <img src="https://ik.imagekit.io/ol8mhbfe8/swati-procon/icon/PhoneCall.svg" alt="" />
-                                            </div>
-                                            <p className="capitalize footer-text"> +91 8000 58 5555 </p>
+                                        <span className="footer-row-icon">
+                                            <img src="https://ik.imagekit.io/ol8mhbfe8/swati-procon/icon/PhoneCall.svg" alt="Phone Icon" />
+                                        </span>
+                                        <p className="capitalize footer-text">+91 8000 58 5555</p>
                                         </a>
                                     </li>
+
                                     <li className="wfc footer-hover">
                                         <a href="mailto:info@swatiprocon.com" className="footer-row" rel="nofollow">
-                                            <div className="footer-row-icon">
-                                                <img src="https://ik.imagekit.io/ol8mhbfe8/swati-procon/icon/EnvelopeOpen.svg" alt="" />
-                                            </div>
-                                            <p className="footer-text"> info@swatiprocon.com </p>
+                                        <span className="footer-row-icon">
+                                            <img src="https://ik.imagekit.io/ol8mhbfe8/swati-procon/icon/EnvelopeOpen.svg" alt="Email Icon" />
+                                        </span>
+                                        <p className="footer-text">info@swatiprocon.com</p>
                                         </a>
                                     </li>
-                                    <li className="wfc footer-hover">
-                                        <a href="https://maps.app.goo.gl/y4xerH5FEnmuKh7N8" target="_blank"
-                                            className="footer-row" rel="noopener noreferrer">
-                                            <div className="footer-row-icon">
-                                                <img src="https://ik.imagekit.io/ol8mhbfe8/swati-procon/icon/MapPinArea.svg" alt="" />
-                                            </div>
-                                            <p className="capitalize footer-text"> 11 Floor, Signature 1, Near Divya<br/>
-                                                Bhaskar House, S.G Highway, <br/>Ahmedabad - 380051 </p>
-                                        </a>
-                                    </li>
-                                </div>
 
-                            </ul>
+                                    <li className="wfc footer-hover">
+                                        <a
+                                        href="https://maps.app.goo.gl/y4xerH5FEnmuKh7N8"
+                                        target="_blank"
+                                        className="footer-row"
+                                        rel="noopener noreferrer"
+                                        >
+                                        <span className="footer-row-icon">
+                                            <img src="https://ik.imagekit.io/ol8mhbfe8/swati-procon/icon/MapPinArea.svg" alt="Map Icon" />
+                                        </span>
+                                        <p className="capitalize footer-text">
+                                            11 Floor, Signature 1, Near Divya<br />
+                                            Bhaskar House, S.G Highway,<br />
+                                            Ahmedabad - 380051
+                                        </p>
+                                        </a>
+                                    </li>
+                                    </ul>
+                                </li>
+                                </ul>
+
                         </li>
                     </ul>
                 </div>

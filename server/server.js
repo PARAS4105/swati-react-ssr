@@ -111,6 +111,8 @@ app.get("*", async (req, res) => {
           <meta charset="UTF-8" />
           <meta name="viewport" content="width=device-width, initial-scale=1.0" />
           <title>Swati Procon - Luxury Residential & Commercial Projects in Ahmedabad</title>
+		  	<meta name="description" content="Discover premium residential and commercial projects by Swati Procon, designed with innovation, quality, and sustainability in mind. Explore our ongoing, upcoming, and completed projects in Ahmedabad.">
+			<meta name="keywords" content="Swati Procon, luxury apartments, commercial spaces, real estate Ahmedabad, premium projects, residential buildings, office spaces, retail spaces">
           <link rel="preconnect" href="https://fonts.googleapis.com">
           <link rel="preload" href="/styles/globals.css" as="style">
           <link rel="stylesheet" href="/styles/globals.css">
